@@ -2,16 +2,24 @@ div.form-box-container
   div.form-box
     div.form-group
       label(for="author") Name
-      input.form-control(type="text" id="name" name="name" value="#{ticket ? ticket.name : ''}" placeholder="Author")
+      input.form-control(type="text" id="name" name="name" value=ticket ? ticket.name : '' placeholder="Author")
     div.form-group
       label(for="title") Email
-      input.form-control(type="text" id="title"  name="email" value="#{ticket ? ticket.email : ''}" placeholder="Title")
+      input.form-control(type="text" id="title"  name="email" value=ticket ? ticket.email : '' placeholder="Title")
+      div.form-group
+        label Status
+        p
+          input(type="radio" name="is_open" value="true" checked)
+          open Open
+      div.form-group
+        input(type="radio" name="is_open" value="false" checked=(ticket ? (ticket.is_open === false ? true : undefined): undefined))
+        closed Closed
   div.form-box
     label Prioritize this ticket
       each item, index in priorities
         div.form-group
-          input(type="radio" name="priority" value="#{index}" checked=(ticket ? (ticket.priority ===#{index} ? true : undefined): undefined))
-          #{index} (#{index})
+          input(type="radio" name="priority" value=index checked=(ticket ? (ticket.priority===index ? true : undefined): undefined))
+          | #{item}
       div.form-group
         label(for="issue") Issue:
         textarea.form-control(rows="5"  name="issue" id='issue') #{ticket ? ticket.issue : ''}
