@@ -8,10 +8,13 @@ div.form-box-container
       input.form-control(type="text" id="title"  name="email" value="#{ticket ? ticket.email : ''}" placeholder="Title")
   div.form-box
     label Prioritize this ticket
+      div.form-group
       each item, index in priorities
-        div.form-group
-          input(type="radio" name="priority" value="#{index}" checked=(ticket ? (ticket.priority ===#{index} ? true : undefined): undefined))
-          #{index} (#{index})
+        - var i = index
+        input(type="radio" name="priority" value=(i+1))
+        label(for="priority")= (index+1)+ ' '+'('+item+')'
+        br
+          
       div.form-group
         label(for="issue") Issue:
         textarea.form-control(rows="5"  name="issue" id='issue') #{ticket ? ticket.issue : ''}
