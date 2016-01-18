@@ -6,8 +6,8 @@ function Tickets() {
   return knex('tickets');
 }
 
-router.get('/tickets', function(req, res, next) {
-  tickets().select().then(function (tickets) {
+router.get('/', function(req, res, next) {
+  Tickets().select().then(function (tickets) {
     res.render('tickets/index', {tickets: tickets});
   })
 });
