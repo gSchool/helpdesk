@@ -45,8 +45,8 @@ router.get('/tickets/show', function(req, res, next) {
 });
 
 
-router.get('/tickets/:id/delete', function(req, res, next) {
-  Tickets().where({id: req.params.id}).delete().then(function () {
+router.get('/:id/delete', function(req, res, next) {
+  Tickets().where('id', req.params.id).del().then(function () {
     res.redirect('/');
   })
 });
