@@ -12,13 +12,13 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/tickets', function(req, res, next) {
-  Tickets().select().then(function (tickets) {
+  Tickets().where('is_open', true).then(function (tickets) {
     res.render('tickets/index', {tickets: tickets});
   })
 });
 
 router.get('/tickets/closed', function(req, res, next) {
-  Tickets().where({"tickets":"closed"}).then(function (tickets) {
+  Tickets().where('is_open', false).then(function (tickets) {
     res.render('tickets/closed', {tickets: tickets});
   })
 });
@@ -37,7 +37,7 @@ router.post('/tickets/:id/update', function(req, res, next) {
 });
 
 router.get('/tickets/new', function(req, res, next) {
-  res.render('tickets/new',{button_text: "Create ticket", priorities: priorities});
+  res.render('tickets/new',{button_text: "Create ticket", priorities: ["Low Priority", "Medium Priority", "High Priority", "Urgent"]});
 });
 
 router.get('/tickets/show', function(req, res, next) {
