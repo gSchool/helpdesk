@@ -6,6 +6,14 @@ div.form-box-container
     div.form-group
       label(for="title") Email
       input.form-control(type="text" id="title"  name="email" value="#{ticket ? ticket.email : ''}" placeholder="Title")
+      div.form-group
+        label Status
+        p
+          input(type="radio" name="is_open" value="true" checked)
+          open Open
+      div.form-group
+        input(type="radio" name="is_open" value="false" checked=(ticket ? (ticket.is_open === false ? true : undefined): undefined))
+        closed Closed
   div.form-box
     div.form-group
         label Prioritize this ticket
