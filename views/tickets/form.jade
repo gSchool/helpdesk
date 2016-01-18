@@ -6,6 +6,18 @@ div.form-box-container
     div.form-group
       label(for="title") Email
       input.form-control(type="text" id="title"  name="email" value="#{ticket ? ticket.email : ''}" placeholder="Title")
+    div.form-group
+      label(for="is_open") status
+      select(name="is_open")
+        if ticket.is_open
+          option(value="TRUE" checked="checked") Open
+          option(value="FALSE") Closed
+          option(value=null) --
+        else 
+          option(value="TRUE") Open
+          option(value="FALSE" checked="checked") Closed
+          option(value=null) --
+          
   div.form-box
     div.form-group
         label Prioritize this ticket
