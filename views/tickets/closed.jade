@@ -25,7 +25,7 @@ block content
            td= ticket.issue
            td= ticket.priority
            td
-             = ticket.open ? "Open" : "Closed"
+             = ticket.is_open ? "Open" : "Closed"
            td
             a(href='/tickets/#{ticket.id}/delete') delete
 
