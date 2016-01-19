@@ -11,7 +11,7 @@ div.form-box-container
       for index in priorities
         div.form-group
           input(type="radio" name="priority" value="#{index}" checked=(ticket ? (ticket.priority ==='#{index}' ? true : undefined): undefined))
-          #{index} (#{index})
+          #{index} (#{index}) 
       div.form-group
         label(for="issue") Issue:
         textarea.form-control(rows="5"  name="issue" id='issue') #{ticket ? ticket.issue : ''}
