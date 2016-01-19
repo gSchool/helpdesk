@@ -17,20 +17,28 @@ router.get('/tickets', function(req, res, next) {
 });
 
 router.get('/tickets/closed', function(req, res, next) {
-  Tickets().where({"tickets":"closed"}).then(function (tickets) {
+  Tickets().where('is_open', false).then(function (tickets) {
     res.render('tickets/closed', {tickets: tickets});
   })
 });
 
 router.post('/tickets', function(req, res, next) {
-  Tickets().insert(req.body).then(function (tickets) {
+  Tickets().insert({
+    name: req.body.name,
+    email: req.body.email,
+    issue: req.body.issue,
+    priority: req.body.priority,
+    is_open: true
+  }).then(function (tickets) {
     res.redirect('tickets/');
   })
 });
 
 router.post('/tickets/:id/update', function(req, res, next) {
   console.log("body is "+JSON.stringify(req.body));
-  Tickets().where({id: req.params.id}).update(req.body).then(function(tickets) {
+  var obj = req.body;
+  obj.is_open = !req.body.is_open;
+  Tickets().where({id: req.params.id}).update(obj).then(function(tickets) {
     res.redirect('/');
   })
 });
