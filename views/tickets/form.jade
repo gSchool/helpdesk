@@ -10,7 +10,7 @@ div.form-box-container
     label Prioritize this ticket
       each item, index in priorities
         div.form-group
-          input(type="radio" name="priority" value="#{index}" checked=(ticket ? (ticket.priority ===#{index} ? true : undefined): undefined))
+          input(type="radio" name="priority" value="#{index}" checked=(ticket ? (ticket.priority ==='#{index}' ? true : undefined): undefined))
           #{index} (#{index})
       div.form-group
         label(for="issue") Issue:
