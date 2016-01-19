@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
 
-function Tickets() {
+function tickets() {
   return knex('tickets');
 }
 
-router.get('/tickets', function(req, res, next) {
+router.get('/', function(req, res, next) {
   tickets().select().then(function (tickets) {
     res.render('tickets/index', {tickets: tickets});
   })
@@ -20,11 +20,11 @@ router.get('/tickets/closed', function(req, res, next) {
 
 router.post('/tickets', function(req, res, next) {
   tickets().insert(req.body).then(function (tickets) {
-    res.redirect('tickets/');
+    res.redirect('/');
   })
 });
 
-router.post('/tickets/:id/update', function(req, res, next) {
+router.post('/tickets/:id', function(req, res, next) {
   console.log("body is "+JSON.stringify(req.body));
   tickets().where({id: req.params.id}).update(req.body).then(function(tickets) {
     res.redirect('/');
