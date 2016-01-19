@@ -17,13 +17,17 @@ router.get('/tickets', function(req, res, next) {
 });
 
 router.get('/tickets/closed', function(req, res, next) {
-  Tickets().where({"tickets":"closed"}).then(function (tickets) {
+  Tickets().where('is_open', 'FALSE').orWhere('is_open', null).then(function (tickets) {
     res.render('tickets/closed', {tickets: tickets});
   })
 });
 
 router.post('/tickets', function(req, res, next) {
-  Tickets().insert(req.body).then(function (tickets) {
+  Tickets().insert({
+  name: req.body.name,
+  email: req.body.email,
+  priority: req.body.priority,
+  is_open: "TRUE"}).then(function (tickets) {
     res.redirect('tickets/');
   })
 });
