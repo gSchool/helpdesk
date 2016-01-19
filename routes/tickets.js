@@ -36,7 +36,9 @@ router.post('/tickets', function(req, res, next) {
 
 router.post('/tickets/:id/update', function(req, res, next) {
   console.log("body is "+JSON.stringify(req.body));
-  Tickets().where({id: req.params.id}).update(req.body).then(function(tickets) {
+  var obj = req.body;
+  obj.is_open = !req.body.is_open;
+  Tickets().where({id: req.params.id}).update(obj).then(function(tickets) {
     res.redirect('/');
   })
 });

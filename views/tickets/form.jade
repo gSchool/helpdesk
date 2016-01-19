@@ -6,6 +6,10 @@ div.form-box-container
     div.form-group
       label(for="title") Email
       input.form-control(type="text" id="title"  name="email" value="#{ticket ? ticket.email : ''}" placeholder="Title")
+    if ticket 
+      div.form-group
+        labe(for='is_open') Close ticket
+        input.form-control(type='checkbox' id='is_open' name='is_open' value='#{ticket ? ticket.is_open : " "}')
   div.form-box
     div.form-group
         label Prioritize this ticket
