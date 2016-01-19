@@ -23,7 +23,13 @@ router.get('/tickets/closed', function(req, res, next) {
 });
 
 router.post('/tickets', function(req, res, next) {
-  Tickets().insert(req.body).then(function (tickets) {
+  Tickets().insert({
+    name: req.body.name,
+    email: req.body.email,
+    issue: req.body.issue,
+    priority: req.body.priority,
+    is_open: true
+  }).then(function (tickets) {
     res.redirect('tickets/');
   })
 });
