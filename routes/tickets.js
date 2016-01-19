@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
 
-function Tickets() {
+function tickets() {
   return knex('tickets');
 }
 
