@@ -24,10 +24,8 @@ block content
              a(href='mailto:#{ticket.email}')=ticket.email
            td= ticket.issue
            td= ticket.priority
-           if ticket.is_open
-              td Open
-            else if ticket.is_open === false
-              td Closed
+           td
+             =ticket.is_open ? "Open" : "Closed"
            td
             a(href='/tickets/#{ticket.id}/delete') delete
 
