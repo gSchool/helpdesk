@@ -24,4 +24,9 @@ div.form-box-container
     div.form-group
       label(for="issue") Issue:
       textarea.form-control(rows="5"  name="issue" id='issue') #{ticket ? ticket.issue : ''}
+    div.form-group
+      label(for='is_open')
+      select(name='is_open')
+        option(value='TRUE') Open
+        option(value='FALSE') Closed
     button.btn.btn-primary(type="submit") #{button_text}
