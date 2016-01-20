@@ -17,7 +17,7 @@ router.get('/tickets', function(req, res, next) {
 });
 
 router.get('/tickets/closed', function(req, res, next) {
-  Tickets().where({"tickets":"closed"}).then(function (tickets) {
+  Tickets().where({is_open:false}).then(function (tickets) {
     res.render('tickets/closed', {tickets: tickets});
   })
 });
