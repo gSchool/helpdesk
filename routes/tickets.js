@@ -55,4 +55,12 @@ router.get('/tickets/:id/delete', function(req, res, next) {
   });
 });
 
+router.get('/tickets/:id/close', function(req, res, next) {
+  Tickets().where('id', req.params.id).update({
+    is_open: false
+  }).then(function() {
+    res.redirect('/');
+  });
+});
+
 module.exports = router;
