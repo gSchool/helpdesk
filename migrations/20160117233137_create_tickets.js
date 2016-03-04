@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
     t.boolean('is_open');
     t.integer('priority');
     t.timestamps();
-  })
+  });
 };
 
 exports.down = function(knex, Promise) {

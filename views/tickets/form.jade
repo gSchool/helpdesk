@@ -24,4 +24,6 @@ div.form-box-container
     div.form-group
       label(for="issue") Issue:
       textarea.form-control(rows="5"  name="issue" id='issue') #{ticket ? ticket.issue : ''}
+
+    a.btn.btn-danger(href="/tickets/#{ticket.id}/close") Close Ticket
     button.btn.btn-primary(type="submit") #{button_text}

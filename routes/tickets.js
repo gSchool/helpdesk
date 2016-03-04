@@ -13,26 +13,26 @@ router.get('/', function(req, res, next) {
 router.get('/tickets', function(req, res, next) {
   Tickets().select().then(function (tickets) {
     res.render('tickets/index', {tickets: tickets});
-  })
+  });
 });
 
 router.get('/tickets/closed', function(req, res, next) {
-  Tickets().where({"tickets":"closed"}).then(function (tickets) {
+  Tickets().where({"is_open":false}).then(function (tickets) {
     res.render('tickets/closed', {tickets: tickets});
-  })
+  });
 });
 
 router.post('/tickets', function(req, res, next) {
   Tickets().insert(req.body).then(function (tickets) {
     res.redirect('tickets/');
-  })
+  });
 });
 
 router.post('/tickets/:id/update', function(req, res, next) {
   console.log("body is "+JSON.stringify(req.body));
   Tickets().where({id: req.params.id}).update(req.body).then(function(tickets) {
     res.redirect('/');
-  })
+  });
 });
 
 router.get('/tickets/new', function(req, res, next) {
@@ -46,13 +46,21 @@ router.get('/tickets/show', function(req, res, next) {
 router.get('/tickets/:id/edit', function(req, res, next) {
   Tickets().where({id: req.params.id}).then(function (ticket) {
     res.render('tickets/edit', {ticket: ticket[0], button_text: "Update ticket"});
-  })
+  });
 });
 
 router.get('/tickets/:id/delete', function(req, res, next) {
   Tickets().where({id: req.params.id}).delete().then(function () {
     res.redirect('/');
-  })
+  });
+});
+
+router.get('/tickets/:id/close', function(req, res, next) {
+  Tickets().where('id', req.params.id).update({
+    is_open: false
+  }).then(function() {
+    res.redirect('/');
+  });
 });
 
 module.exports = router;
